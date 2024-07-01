@@ -1,0 +1,54 @@
+robdd hw3p2 (f, g, a, b, c);
+output f;
+
+output g;
+
+input a;
+NODE (2, SINK (1), SINK (0))
+input b;
+NODE (3, SINK (1), SINK (0))
+input c;
+NODE (4, SINK (1), SINK (0))
+
+wire Iu1;
+wire Iu2;
+wire Iu3;
+
+one one(.y(1'b1));
+SINK (1)
+and u1(.y(Iu1), .a(a), .b(b));
+NODE (2, NODE (3, SINK (1), SINK (0)), SINK (0))
+or u2(.y(Iu2), .a(a), .b(c));
+NODE (2, SINK (1), NODE (4, SINK (1), SINK (0)))
+or u3(.y(Iu3), .a(b), .b(c));
+NODE (3, SINK (1), NODE (4, SINK (1), SINK (0)))
+or u4(.y(f), .a(Iu1), .b(c));
+NODE (2, NODE (3, SINK (1), NODE (4, SINK (1), SINK (0))), NODE (4, SINK (1), SINK (0)))
+and u5(.y(g), .a(Iu2), .b(Iu3));
+NODE (2, NODE (3, SINK (1), NODE (4, SINK (1), SINK (0))), NODE (4, SINK (1), SINK (0)))
+zero zero(.y(1'b0));
+SINK (0)
+
+endrobdd
+
+SINK (1)
+SINK (0)
+UNIQUE_TABLE {
+NODE (2, SINK (1), SINK (0))
+NODE (2, SINK (1), NODE (4, SINK (1), SINK (0)))
+NODE (2, NODE (3, SINK (1), NODE (4, SINK (1), SINK (0))), NODE (4, SINK (1), SINK (0)))
+NODE (2, NODE (3, SINK (1), SINK (0)), SINK (0))
+NODE (3, SINK (1), SINK (0))
+NODE (3, SINK (1), NODE (4, SINK (1), SINK (0)))
+NODE (4, SINK (1), SINK (0))
+}
+
+COMPUTED_TABLE {
+NODE (2, NODE (3, SINK (1), NODE (4, SINK (1), SINK (0))), NODE (4, SINK (1), SINK (0)))
+NODE (4, SINK (1), SINK (0))
+NODE (2, NODE (3, SINK (1), NODE (4, SINK (1), SINK (0))), NODE (4, SINK (1), SINK (0)))
+NODE (2, SINK (1), NODE (4, SINK (1), SINK (0)))
+NODE (3, SINK (1), NODE (4, SINK (1), SINK (0)))
+NODE (2, NODE (3, SINK (1), SINK (0)), SINK (0))
+}
+

@@ -1,0 +1,6 @@
+WARNING: Unconnected pin "b", in instance and2 A_1(.y(wx), .a(w2));
+WARNING: Dangling net "o" has no driver
+WARNING: Dangling net "wx" drives nothing
+WARNING: Found loop at gate R_2(.b(w1))
+WARNING: Found loop at gate R_1(.b(w2))
+WARNING: Found loop at gate A_1(.a(w2))
